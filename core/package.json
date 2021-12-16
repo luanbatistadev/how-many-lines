@@ -1,0 +1,20 @@
+{
+  "name": "how-many-lines",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "engines": {
+    "node": "14.x"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.1",
+    "ts-node": "^10.4.0",
+    "tslint": "5.12.1",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "graphql": "^16.1.0",
+    "graphql-request": "^3.7.0",
+    "node-fetch": "2"
+  }
+}
