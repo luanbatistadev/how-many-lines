@@ -1,7 +1,7 @@
 /// CLI implementation of `HowManyLines` API
 const { default: HowManyLines } = require("how-many-lines");
 
-/// Usage `node index TOKEN=<TOKEN>`
+/// Usage `node line-count TOKEN=<TOKEN>`
 const args = process.argv
   .slice(2)
   .map((arg) => arg.split("="))
