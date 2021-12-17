@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+/// Allow usage as `gradlew run JOB=OpenPullRequest`
+val targetScript = project.gradle.startParameter.projectProperties["JOB"] ?: throw Exception("Usage `gradlew run JOB=<JOB_FILE>`")
+
 plugins {
   kotlin("jvm") version "1.5.10"
   application
@@ -11,6 +14,7 @@ version = "v0.1.0"
 repositories {
   mavenCentral()
 }
+
 dependencies {
   val ktorVersion = "1.6.7"
 
@@ -34,7 +38,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-  mainClass.set("MainKt")
+  mainClass.set("${targetScript}Kt")
 }
-
-

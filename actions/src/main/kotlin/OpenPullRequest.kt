@@ -9,14 +9,14 @@ const val USER_TOKEN = "USER_TOKEN"
 const val REPO_NAME = "REPO_NAME"
 
 const val AVATAR_URL = "avatar_url"
-const val LOGIN = "LOGIN"
+const val LOGIN = "login"
 const val HTML_URL = "html_url"
 
 /// Script that runs through the Github Action
 /// after user login, this script will perform the following tasks:
 /// 1. Fetch lines count using the `/cli` module
-/// 2. Add the name, profile picture, and line count to the `README.md` table
-/// 3. Note: if a user already exists, the item will be updated
+/// 2. Create a new PR add the name, profile picture, and line count to the `<login>.json` in the `pool` branch
+/// 3. Note: If the data already, the file will be updated
 suspend fun main() {
   /// You should provide these environment variables when
   /// running this script using the Github Action environment
@@ -47,5 +47,6 @@ suspend fun main() {
   print(login)
   print(profileUrl)
 
-  /// TODO: Add system to parse current markdown to read table data
+  /// TODO: Create a pool branch following the data structure
+  /// <login>.json
 }
