@@ -34,12 +34,13 @@ suspend fun main() {
 }
 
 /// Create issue for the first time users
-fun createIssue(user: JSONObject) {
+suspend fun createIssue(user: JSONObject) {
   val lineCount = runLineCountCLI()
 
   val data = Github.generateIssuePoolData(user, lineCount)
+  val slug = Github.generateSlug(user)
 
-  /// TODO: Create POOL
+  Github.createPoolIssue(Environment.repo, Environment.owner, data, slug, Environment.repositoryToken)
 }
 
 /// Update issue for the non-first time users
@@ -47,5 +48,6 @@ fun updateIssue(user: JSONObject, issue: JSONObject) {
   val lineCount = runLineCountCLI()
   val data = Github.generateIssuePoolData(user, lineCount)
 
-  /// TODO: Update the issue pool body content
+  /// TODO: Implement Github.updateIssue and  Github.updatePoolIssue
+  /// Github.createPoolIssue(...)
 }

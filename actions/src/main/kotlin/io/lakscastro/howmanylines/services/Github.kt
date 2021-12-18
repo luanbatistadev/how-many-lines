@@ -135,8 +135,8 @@ object Github {
         "/repos/$owner/$repo/issues",
         token,
         mapOf(
-          "title" to "To $slug",
-          "body" to mapToJson(data),
+          "title" to "By `$slug`",
+          "body" to "```${mapToJson(data)}```",
           "assignees" to owner,
           "labels" to listOf(slug, POOL_ISSUE_LABEL)
         )
