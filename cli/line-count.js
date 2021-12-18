@@ -1,13 +1,10 @@
 /// CLI implementation of `HowManyLines` API
+///
+/// Usage `node line-count`
 const { default: HowManyLines } = require("how-many-lines");
 
-/// Usage `node line-count TOKEN=<TOKEN>`
-const args = process.argv
-  .slice(2)
-  .map((arg) => arg.split("="))
-  .reduce((current, pair) => ({ ...current, [pair[0]]: pair[1] }), {});
-
-const token = args.TOKEN;
+/// Remember to set the environment variable before running it
+const token = process.env.USER_TOKEN;
 
 /// Uses the `HowManyLines` API to generate the `lineCount`
 async function fetchLineCount() {
