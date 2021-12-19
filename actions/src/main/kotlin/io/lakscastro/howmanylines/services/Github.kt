@@ -8,7 +8,6 @@ import io.lakscastro.howmanylines.utils.*
 import org.json.JSONArray
 import org.json.JSONObject
 
-
 object Github {
   /// GitHub API User fields
   private const val AVATAR_URL = "avatar_url"
@@ -136,8 +135,8 @@ object Github {
         token,
         mapOf(
           "title" to "By `$slug`",
-          "body" to "```${mapToJson(data)}```",
-          "assignees" to owner,
+          "body" to "```json\n${mapToJson(data)}\n```",
+          "assignees" to arrayOf(owner),
           "labels" to listOf(slug, POOL_ISSUE_LABEL)
         )
       ),
@@ -158,7 +157,7 @@ object Github {
       USER_ISSUE_FIELD to mapOf(
         LOGIN to user.get(LOGIN),
         AVATAR_URL to user.get(AVATAR_URL),
-        HTML_URL to user.get(AVATAR_URL)
+        HTML_URL to user.get(HTML_URL)
       ),
       STATS_ISSUE_FIELD to mapOf(
         LINE_COUNT_ISSUE_FIELD to lineCount

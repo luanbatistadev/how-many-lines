@@ -8,7 +8,7 @@ plugins {
   application
 }
 
-group = "io.lakscastro"
+group = "io.lakscastro.howmanylines"
 version = "v0.1.0"
 
 repositories {
@@ -41,5 +41,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-  mainClass.set("${targetScript}Kt")
+  mainClass.set("$group.${targetScript}Kt")
 }

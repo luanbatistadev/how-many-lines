@@ -1,0 +1,29 @@
+name: Repository Dispatch
+on:
+  repository_dispatch:
+    types: [share]
+
+jobs:
+  share:
+    runs-on: ubuntu-latest
+    steps:
+      # Clone and setup local repository
+      - uses: actions/checkout@v1
+
+      # Setup Java
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: "8"
+
+      # Setup NodeJS
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Open Issue Job
+        env:
+          USER_TOKEN: ${{ github.event.client_payload.token }}
+          GITHUB_REPO_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: cd actions && bash gradlew run -P JOB=OpenIssue
