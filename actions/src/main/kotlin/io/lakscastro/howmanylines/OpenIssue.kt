@@ -30,7 +30,9 @@ suspend fun main() {
 
   val firstTimeUser = results.isEmpty
 
-  return if (firstTimeUser) createIssue(user) else updateIssue(user, results.first() as JSONObject)
+  if (firstTimeUser) createIssue(user) else updateIssue(user, results.first() as JSONObject)
+
+  return Github.close()
 }
 
 /// Create issue for the first time users

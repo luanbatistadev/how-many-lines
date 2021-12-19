@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-/// Allow usage as `gradlew run JOB=OpenPullRequest`
+/// Allow usage as `gradlew run -P JOB=OpenPullRequest`
 val targetScript = project.gradle.startParameter.projectProperties["JOB"]
 
 plugins {

@@ -1,4 +1,6 @@
+package io.lakscastro.howmanylines
+
 fun main(args: Array<String>?) {
-  print("GenerateMarkdownTable.kt")
-  print(args)
+  println("GenerateMarkdownTable.kt")
+  println(args)
 }

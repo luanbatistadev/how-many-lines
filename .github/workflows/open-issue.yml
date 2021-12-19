@@ -13,13 +13,16 @@ jobs:
       # Setup Java
       - uses: actions/setup-java@v2
         with:
-          distribution: "temurin"
+          distribution: "zulu" # See 'Supported distributions' for available options
           java-version: "8"
 
       # Setup NodeJS
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
+
+      - name: Make gradlew executable
+        run: chmod +x actions/gradlew
 
       - name: Open Issue Job
         env:

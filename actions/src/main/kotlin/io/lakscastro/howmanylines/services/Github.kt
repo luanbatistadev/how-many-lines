@@ -28,7 +28,7 @@ object Github {
   private const val POOL_ISSUE_LABEL_COLOR = "003333"
 
   /// HTTP Client from `ktor` library
-  private val client = HttpClient(CIO)
+  private val client by lazy { HttpClient(CIO) }
 
   /// Implemented endpoints
   private const val CURRENT_USER_ENDPOINT = "/user"
@@ -163,4 +163,6 @@ object Github {
         LINE_COUNT_ISSUE_FIELD to lineCount
       )
     )
+
+  fun close() = client.close()
 }
