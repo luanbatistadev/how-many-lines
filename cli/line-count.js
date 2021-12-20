@@ -17,4 +17,4 @@ async function fetchLineCount() {
   return lineCount;
 }
 
-fetchLineCount().then(process.exit);
+(async () => process.stdout.write(`${await fetchLineCount()}`))();
