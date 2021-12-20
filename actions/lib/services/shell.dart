@@ -13,23 +13,23 @@ const kInstallCLI = 'install';
 /// Script constants
 const kNodeCLI = 'cli/';
 
-Future<String> shell(String command,
+Future<ProcessResult> shell(String command,
     {List<String> arguments = const [], required String workingDir}) async {
   final result = await Process.run(command, arguments,
       workingDirectory: workingDir, runInShell: true);
 
-  return result.stdout;
+  return result;
 }
 
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
-Future<String> runNodeShell(
+Future<ProcessResult> runNodeShell(
         {List<String> arguments = const [], required String workingDir}) =>
     shell(kNode, arguments: arguments, workingDir: workingDir);
 
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
-Future<String> runNpmShell(
+Future<ProcessResult> runNpmShell(
         {List<String> arguments = const [], required String workingDir}) =>
     shell(kNpm, arguments: arguments, workingDir: workingDir);
 
@@ -60,7 +60,7 @@ Future<int> runLineCountCLI() async {
       await runNodeShell(arguments: [kLineCountCLI], workingDir: workingDir);
 
   try {
-    return int.parse(result);
+    return result.exitCode;
   } on FormatException catch (e) {
     print(
         'Expected a `int` but got source: ${e.source} | offset: ${e.offset} | message: ${e.message}');

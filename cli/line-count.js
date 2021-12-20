@@ -17,5 +17,4 @@ async function fetchLineCount() {
   return lineCount;
 }
 
-/// Trick to write to stdout when API fetch to finish with `async` syntax
-(async () => process.stdout.write(`${await fetchLineCount()}`))();
+fetchLineCount().then(process.exit);
