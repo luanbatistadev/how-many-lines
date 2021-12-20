@@ -18,6 +18,13 @@ Future<ProcessResult> shell(String command,
   final result = await Process.run(command, arguments,
       workingDirectory: workingDir, runInShell: true);
 
+  if (result.exitCode != 0) {
+    print(
+        'We got an error when running: $command ${arguments.join(' ')}\nError: ${result.stderr}');
+
+    throw result;
+  }
+
   return result;
 }
 
