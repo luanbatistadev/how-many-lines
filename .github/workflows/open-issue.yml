@@ -19,7 +19,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
 
       - name: Install Dart Packges
-        run: dart pub get
+        run: cd actions && dart pub get
 
       - name: Open Issue Job
         env:
