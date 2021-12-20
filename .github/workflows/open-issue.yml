@@ -21,12 +21,14 @@ jobs:
         with:
           node-version: "14"
 
-      - name: Make gradlew executable
-        run: chmod +x actions/gradlew
+      # Setup Dart SDK
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 2.14.4
 
       - name: Open Issue Job
         env:
           USER_TOKEN: ${{ github.event.client_payload.token }}
           GITHUB_REPO_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
-        run: cd actions && bash gradlew run -P JOB=OpenIssue
+        run: cd actions && dart run lib/open_issue.dart
