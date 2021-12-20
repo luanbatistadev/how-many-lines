@@ -10,12 +10,6 @@ jobs:
       # Clone and setup local repository
       - uses: actions/checkout@v1
 
-      # Setup Java
-      - uses: actions/setup-java@v2
-        with:
-          distribution: "zulu" # See 'Supported distributions' for available options
-          java-version: "8"
-
       # Setup NodeJS
       - uses: actions/setup-node@v2
         with:
@@ -23,8 +17,9 @@ jobs:
 
       # Setup Dart SDK
       - uses: dart-lang/setup-dart@v1
-        with:
-          sdk: 2.14.4
+
+      - name: Install Dart Packges
+        run: dart pub get
 
       - name: Open Issue Job
         env:
