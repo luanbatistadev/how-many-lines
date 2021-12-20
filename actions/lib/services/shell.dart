@@ -15,14 +15,22 @@ const kInstallCLI = 'install';
 const kNodeCLI = 'cli';
 const kCorePackage = 'core';
 
-Future<ProcessResult> shell(String command,
-    {List<String> arguments = const [], required String workingDir}) async {
-  final result = await Process.run(command, arguments,
-      workingDirectory: workingDir, runInShell: true);
+Future<ProcessResult> shell(
+  String command, {
+  List<String> arguments = const [],
+  required String workingDir,
+}) async {
+  final result = await Process.run(
+    command,
+    arguments,
+    workingDirectory: workingDir,
+    runInShell: true,
+  );
 
   if (result.exitCode != 0) {
-    print(
-        'We got an error when running: $command ${arguments.join(' ')}\nError: ${result.stderr}');
+    stdout.write(
+      'We got an error when running: $command ${arguments.join(' ')}\nError: ${result.stderr}',
+    );
 
     throw result;
   }
@@ -32,20 +40,26 @@ Future<ProcessResult> shell(String command,
 
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
-Future<ProcessResult> runNodeShell(
-        {List<String> arguments = const [], required String workingDir}) =>
+Future<ProcessResult> runNodeShell({
+  List<String> arguments = const [],
+  required String workingDir,
+}) =>
     shell(kNode, arguments: arguments, workingDir: workingDir);
 
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
-Future<ProcessResult> runNpmShell(
-        {List<String> arguments = const [], required String workingDir}) =>
+Future<ProcessResult> runNpmShell({
+  List<String> arguments = const [],
+  required String workingDir,
+}) =>
     shell(kNpm, arguments: arguments, workingDir: workingDir);
 
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
-Future<ProcessResult> runNpxShell(
-        {List<String> arguments = const [], required String workingDir}) =>
+Future<ProcessResult> runNpxShell({
+  List<String> arguments = const [],
+  required String workingDir,
+}) =>
     shell(kNpx, arguments: arguments, workingDir: workingDir);
 
 /// Execute the CLI module that can be found in `~/cli` repository folder
@@ -83,10 +97,11 @@ Future<int> runLineCountCLI() async {
       await runNodeShell(arguments: [kLineCountCLI], workingDir: workingDir);
 
   try {
-    return int.parse(result.stdout);
+    return int.parse(result.stdout as String);
   } on FormatException catch (e) {
-    print(
-        'Expected a `int` but got source: ${e.source} | offset: ${e.offset} | message: ${e.message}');
+    stdout.write(
+      'Expected a `int` but got source: ${e.source} | offset: ${e.offset} | message: ${e.message}',
+    );
 
     rethrow;
   }

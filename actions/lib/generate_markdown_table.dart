@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void main() {
-  print('GenerateMarkdownTable.kt');
+  stdout.write('GenerateMarkdownTable.kt');
 }

@@ -19,21 +19,24 @@ Future<void> main() async {
 
   /// Try to create a label that will identify the user
   await github.createLabelIfNotExists(
-      name: slug,
-      repository: environment.repository,
-      description: 'Hey! This is your tag',
-      repoToken: environment.repositoryToken);
+    name: slug,
+    repository: environment.repository,
+    description: 'Hey! This is your tag',
+    repoToken: environment.repositoryToken,
+  );
 
   /// Try to create **the** label that will identify this kind of issues (Data pool issues)
   await github.createPoolLabel(
-      repository: environment.repository,
-      description: 'Issues are just to hold data!',
-      repoToken: environment.repositoryToken);
+    repository: environment.repository,
+    description: 'Issues are just to hold data!',
+    repoToken: environment.repositoryToken,
+  );
 
   final results = await github.searchIssueByLabels(
-      repository: environment.repository,
-      labels: [slug],
-      token: environment.repositoryToken);
+    repository: environment.repository,
+    labels: [slug],
+    token: environment.repositoryToken,
+  );
 
   final firstTimeUser = results.isEmpty;
 
@@ -52,16 +55,19 @@ Future<void> createIssue(Map<String, dynamic> user) async {
   final slug = github.generateSlug(user);
 
   github.createPoolIssue(
-      repo: environment.repo,
-      owner: environment.owner,
-      data: data,
-      slug: slug,
-      repoToken: environment.repositoryToken);
+    repo: environment.repo,
+    owner: environment.owner,
+    data: data,
+    slug: slug,
+    repoToken: environment.repositoryToken,
+  );
 }
 
 /// Update issue for the non-first time users
 Future<void> updateIssue(
-    Map<String, dynamic> user, Map<String, dynamic> issue) async {
+  Map<String, dynamic> user,
+  Map<String, dynamic> issue,
+) async {
   final lineCount = await shell.runLineCountCLI();
   final data = github.generateIssuePoolData(user, lineCount);
 
