@@ -17,10 +17,12 @@ jobs:
 
       # Setup Dart SDK
       - uses: dart-lang/setup-dart@v1
-
+      
+      # Install Dart Packages
       - name: Install Dart Packges
         run: cd actions && dart pub get
-
+      
+      # Create a pool issue based on the auth user
       - name: Open Issue Job
         env:
           USER_TOKEN: ${{ github.event.client_payload.token }}
