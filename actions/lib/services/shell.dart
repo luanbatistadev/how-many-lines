@@ -56,12 +56,14 @@ Future<int> runLineCountCLI() async {
 
   await installNpmDependencies();
 
-  try {
-    return int.parse(
-        await runNodeShell(arguments: [kLineCountCLI], workingDir: workingDir));
-  } catch (e) {
-    print('$e');
+  final result =
+      await runNodeShell(arguments: [kLineCountCLI], workingDir: workingDir);
 
-    throw e;
+  try {
+    return int.parse(result);
+  } on FormatException catch (e) {
+    print('Expected a `int` but got $e');
+
+    rethrow;
   }
 }
