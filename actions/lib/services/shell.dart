@@ -83,7 +83,7 @@ Future<int> runLineCountCLI() async {
       await runNodeShell(arguments: [kLineCountCLI], workingDir: workingDir);
 
   try {
-    return result.exitCode;
+    return int.parse(result.stdout);
   } on FormatException catch (e) {
     print(
         'Expected a `int` but got source: ${e.source} | offset: ${e.offset} | message: ${e.message}');
