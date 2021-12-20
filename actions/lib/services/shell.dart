@@ -56,6 +56,12 @@ Future<int> runLineCountCLI() async {
 
   await installNpmDependencies();
 
-  return int.parse(
-      await runNodeShell(arguments: [kLineCountCLI], workingDir: workingDir));
+  try {
+    return int.parse(
+        await runNodeShell(arguments: [kLineCountCLI], workingDir: workingDir));
+  } catch (e) {
+    print('$e');
+
+    throw e;
+  }
 }
