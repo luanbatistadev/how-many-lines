@@ -5,7 +5,7 @@ on:
 
 jobs:
   share:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       # Clone and setup local repository
       - uses: actions/checkout@v1
