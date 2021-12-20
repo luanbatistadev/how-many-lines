@@ -62,7 +62,8 @@ Future<int> runLineCountCLI() async {
   try {
     return int.parse(result);
   } on FormatException catch (e) {
-    print('Expected a `int` but got $e');
+    print(
+        'Expected a `int` but got source: ${e.source} | offset: ${e.offset} | message: ${e.message}');
 
     rethrow;
   }
