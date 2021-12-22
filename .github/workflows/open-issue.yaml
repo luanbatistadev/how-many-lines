@@ -10,22 +10,21 @@ jobs:
       # Clone and setup local repository
       - uses: actions/checkout@v1
 
+      # Setup Java
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "zulu"
+          java-version: "8"
+
       # Setup NodeJS
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
 
-      # Setup Dart SDK
-      - uses: dart-lang/setup-dart@v1
-      
-      # Install Dart Packages
-      - name: Install Dart Packges
-        run: cd actions && dart pub get
-      
       # Create a pool issue based on the auth user
       - name: Open Issue Job
         env:
           USER_TOKEN: ${{ github.event.client_payload.token }}
           GITHUB_REPO_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
-        run: cd actions && dart run lib/open_issue.dart
+        run: cd actions && bash ./gradlew run -P JOB=OpenIssue
