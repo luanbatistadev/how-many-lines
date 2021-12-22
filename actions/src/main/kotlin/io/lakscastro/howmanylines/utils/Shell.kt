@@ -9,15 +9,18 @@ const val CMD = "cmd.exe"
 const val BASH = "bash"
 const val NODE = "node"
 const val NPM = "npm"
+const val NPX = "npx"
 
 /// Executable constants
 const val LINE_COUNT_CLI = "line-count.js"
 const val INSTALL_CLI = "install"
+const val TYPESCRIPT_CLI = "tsc"
 const val CMD_COMMAND = "/c"
 const val BASH_COMMAND = "-c"
 
 /// Script constants
 const val NODE_JS_CLI_FOLDER = "../cli"
+const val CORE_MODULE_FOLDER = "../core"
 
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
@@ -28,13 +31,14 @@ fun shell(command: String, arguments: Array<String>, workingDir: File): String {
   return shellRun(executable, listOf(arg, command, *arguments), workingDir)
 }
 
-/// `command` isn't the `cmd.exe` or `bash`
-/// but the executable that you need to run like `node` or `pip`
+/// Run CLI command as `node <arguments>` in a given `workingDir`
 fun runNodeShell(arguments: Array<String>, workingDir: File): String = shell(NODE, arguments, workingDir)
 
-/// `command` isn't the `cmd.exe` or `bash`
-/// but the executable that you need to run like `node` or `pip`
+/// Run CLI command as `npm <arguments>` in a given `workingDir`
 fun runNpmShell(arguments: Array<String>, workingDir: File): String = shell(NPM, arguments, workingDir)
+
+/// Run CLI command as `npx <arguments>` in a given `workingDir`
+fun runNpxShell(arguments: Array<String>, workingDir: File): String = shell(NPX, arguments, workingDir)
 
 /// Execute the CLI module that can be found in `~/cli` repository folder
 ///
@@ -42,7 +46,13 @@ fun runNpmShell(arguments: Array<String>, workingDir: File): String = shell(NPM,
 /// ...Well, why not?
 fun runLineCountCLI(): Int {
   val workingDir = Environment.workingDir.resolve(NODE_JS_CLI_FOLDER)
+  val coreDir = Environment.workingDir.resolve(CORE_MODULE_FOLDER)
 
+  fun buildCorePackage() {
+    runNpmShell(arrayOf(INSTALL_CLI), coreDir);
+    runNpxShell(arrayOf(TYPESCRIPT_CLI), coreDir);
+  }
+  
   fun installNpmDependencies() {
     val commands = listOf(
       arrayOf(INSTALL_CLI, "-D", "typescript"),
@@ -55,6 +65,7 @@ fun runLineCountCLI(): Int {
     }
   }
 
+  buildCorePackage();
   installNpmDependencies()
 
   return runNodeShell(arrayOf(LINE_COUNT_CLI), workingDir).toInt()
