@@ -25,10 +25,11 @@ const val CORE_MODULE_FOLDER = "../core"
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
 fun shell(command: String, arguments: Array<String>, workingDir: File): String {
-  val executable = if (os.isWindows()) CMD else BASH
-  val arg = if (os.isWindows()) CMD_COMMAND else BASH_COMMAND
-
-  return shellRun(executable, listOf(arg, command, *arguments), workingDir)
+  return when(os) {
+    OS.WINDOWS -> shellRun(CMD, listOf(CMD_COMMAND, command, *arguments), workingDir)
+    OS.LINUX -> shellRun(BASH, listOf(BASH_COMMAND, "${arguments.joinToString(" ")}", *arguments), workingDir)
+    else -> throw UnsupportedOperationException("We can't handle this OS: $os")
+  }
 }
 
 /// Run CLI command as `node <arguments>` in a given `workingDir`
