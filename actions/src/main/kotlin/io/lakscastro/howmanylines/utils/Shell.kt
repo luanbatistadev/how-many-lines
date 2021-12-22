@@ -17,6 +17,11 @@ const val INSTALL_CLI = "install"
 const val TYPESCRIPT_CLI = "tsc"
 const val CMD_COMMAND = "/c"
 const val BASH_COMMAND = "-c"
+const val AS_DEV_DEPENDENCY = "-D"
+
+/// Typescript/Javascript packages
+const val TYPESCRIPT_PACKAGE = "typescript"
+const val TS_NODE_PACKAGE = "ts-node"
 
 /// Script constants
 const val NODE_JS_CLI_FOLDER = "../cli"
@@ -24,22 +29,22 @@ const val CORE_MODULE_FOLDER = "../core"
 
 /// `command` isn't the `cmd.exe` or `bash`
 /// but the executable that you need to run like `node` or `pip`
-fun shell(command: String, arguments: Array<String>, workingDir: File): String {
+private fun shell(command: String, arguments: Array<String>, workingDir: File): String {
   return when(os) {
     OS.WINDOWS -> shellRun(CMD, listOf(CMD_COMMAND, command, *arguments), workingDir)
-    OS.LINUX -> shellRun(BASH, listOf(BASH_COMMAND, "${arguments.joinToString(" ")}", *arguments), workingDir)
+    OS.LINUX -> shellRun(BASH, listOf(BASH_COMMAND, "$command ${arguments.joinToString(" ")}"), workingDir)
     else -> throw UnsupportedOperationException("We can't handle this OS: $os")
   }
 }
 
 /// Run CLI command as `node <arguments>` in a given `workingDir`
-fun runNodeShell(arguments: Array<String>, workingDir: File): String = shell(NODE, arguments, workingDir)
+private fun runNodeShell(arguments: Array<String>, workingDir: File): String = shell(NODE, arguments, workingDir)
 
 /// Run CLI command as `npm <arguments>` in a given `workingDir`
-fun runNpmShell(arguments: Array<String>, workingDir: File): String = shell(NPM, arguments, workingDir)
+private fun runNpmShell(arguments: Array<String>, workingDir: File): String = shell(NPM, arguments, workingDir)
 
 /// Run CLI command as `npx <arguments>` in a given `workingDir`
-fun runNpxShell(arguments: Array<String>, workingDir: File): String = shell(NPX, arguments, workingDir)
+private fun runNpxShell(arguments: Array<String>, workingDir: File): String = shell(NPX, arguments, workingDir)
 
 /// Execute the CLI module that can be found in `~/cli` repository folder
 ///
@@ -56,8 +61,8 @@ fun runLineCountCLI(): Int {
   
   fun installNpmDependencies() {
     val commands = listOf(
-      arrayOf(INSTALL_CLI, "-D", "typescript"),
-      arrayOf(INSTALL_CLI, "-D", "ts-node"),
+      arrayOf(INSTALL_CLI, AS_DEV_DEPENDENCY, TYPESCRIPT_PACKAGE),
+      arrayOf(INSTALL_CLI, AS_DEV_DEPENDENCY, TS_NODE_PACKAGE),
       arrayOf(INSTALL_CLI)
     )
 
