@@ -10,6 +10,7 @@ const kNpx = 'npx';
 /// Executable constants
 const kLineCountCLI = 'line-count.js';
 const kInstallCLI = 'install';
+const kTypescriptCLI = 'tsc';
 
 /// Script constants
 const kNodeCLI = 'cli';
@@ -74,8 +75,8 @@ Future<int> runLineCountCLI() async {
       path.normalize(path.join(currentDir.path, '..', kCorePackage));
 
   Future<void> buildCorePackage() async {
-    await runNpmShell(arguments: ['install'], workingDir: coreDir);
-    await runNpxShell(arguments: ['tsc'], workingDir: coreDir);
+    await runNpmShell(arguments: [kInstallCLI], workingDir: coreDir);
+    await runNpxShell(arguments: [kTypescriptCLI], workingDir: coreDir);
   }
 
   Future<void> installNpmDependencies() async {
