@@ -34,8 +34,6 @@ suspend fun main() {
   val firstTimeUser = results.isEmpty
 
   if (firstTimeUser) createIssue(user) else updateIssue(user, results.first() as JSONObject)
-
-  github.dispatchEvent(Environment.repository, Environment.repositoryToken, Github.BUILD_README_DISPATCH)
 }
 
 /// Create issue for the first time users

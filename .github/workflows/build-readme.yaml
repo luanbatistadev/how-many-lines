@@ -1,12 +1,17 @@
 name: Build README.md
 on:
-  repository_dispatch:
-    types: [build-readme]
+  issues:
+    types: [opened, edited, deleted, reopened, labeled, unlabeled]
 
 jobs:
   build-readme:
     runs-on: ubuntu-latest
     steps:
+      # Ignore normal issue events
+      - name: Exit if is not a pool issue
+        if: "contains(github.event.issue.labels.*.name, 'u: pool')"
+        run: exit 0
+
       # Clone and setup local repository
       - uses: actions/checkout@v1
 
