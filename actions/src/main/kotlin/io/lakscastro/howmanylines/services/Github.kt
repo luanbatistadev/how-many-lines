@@ -134,19 +134,18 @@ class Github(private val client: HttpClient) {
     )
   }
 
-  /// Get the `README.md` of the repository, create if not exists
+  /// Dispatch a given `event` to the given `repository`
   suspend fun dispatchEvent(
     repository: String,
     token: String,
     event: String,
     payload: Map<String, *> = emptyMap<String, String>()
-  ) {
-    post(
-      "/repos/$repository/dispatches",
-      token,
-      mapOf("event_type" to event, "client_payload" to payload)
-    )
-  }
+  ) = post(
+    "/repos/$repository/dispatches",
+    token,
+    mapOf("event_type" to event, "client_payload" to payload)
+  )
+
 
   suspend fun createPoolLabel(repository: String, description: String, repositoryToken: String) {
     return createLabelIfNotExists(POOL_ISSUE_LABEL, repository, description, repositoryToken, POOL_ISSUE_LABEL_COLOR)
