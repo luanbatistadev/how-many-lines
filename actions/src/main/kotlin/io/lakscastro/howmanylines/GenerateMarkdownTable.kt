@@ -41,7 +41,7 @@ suspend fun main() {
   val content = listOf(*before, markdown, *after).joinToString("\n")
 
   val formatter = SimpleDateFormat("dd MMMM yyyy HH:mm:ss")
-  val commit = "($mentions) `README.md` build on `${formatter.format(Date())}`"
+  val commit = "${if (mentions.isNotEmpty()) "($mentions)" else ""} `README.md` build on `${formatter.format(Date())}`"
 
   github.fillReadme(Environment.repository, Environment.repositoryToken, content, sha, commit)
 }
