@@ -1,4 +1,4 @@
-package io.lakscastro.howmanylines.utils
+package io.lakscastro.howmanylines.services
 
 import org.json.JSONArray
 import org.json.JSONObject

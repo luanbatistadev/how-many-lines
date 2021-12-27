@@ -1,3 +1,1 @@
-
-rootProject.name = "how-many-lines"
-
+rootProject.name = "howmanylines"

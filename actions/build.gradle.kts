@@ -18,9 +18,8 @@ repositories {
 dependencies {
   val ktorVersion = "1.6.7"
 
-  /// Ktor library, to make HTTP requests
-  implementation("io.ktor:ktor-client-core:$ktorVersion")
-  implementation("io.ktor:ktor-client-cio:$ktorVersion")
+  /// OkHttp library to call GitHub API
+  implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
   /// Turtle library, to run shell commands
   implementation("com.lordcodes.turtle:turtle:0.6.0")
