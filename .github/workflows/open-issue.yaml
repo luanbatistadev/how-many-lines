@@ -4,7 +4,7 @@ on:
     types: [open-issue]
 
 jobs:
-  share:
+  open-issue:
     runs-on: ubuntu-latest
     steps:
       # Clone and setup local repository

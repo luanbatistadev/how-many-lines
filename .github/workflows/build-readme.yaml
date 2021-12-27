@@ -4,7 +4,7 @@ on:
     types: [build-readme]
 
 jobs:
-  share:
+  build-readme:
     runs-on: ubuntu-latest
     steps:
       # Clone and setup local repository
