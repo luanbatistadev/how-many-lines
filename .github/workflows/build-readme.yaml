@@ -22,6 +22,6 @@ jobs:
       # Build markdown and update the `README.md`
       - name: Build README.md Job
         env:
-          GITHUB_REPO_TOKEN: ${{ github.token }}
+          GITHUB_REPO_TOKEN: ${{ secrets.GITHUB_REPO_TOKEN }}
           REPOSITORY: ${{ github.repository }}
         run: cd actions && bash ./gradlew run -P JOB=GenerateMarkdownTable

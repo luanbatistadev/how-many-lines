@@ -25,6 +25,6 @@ jobs:
       - name: Open Issue Job
         env:
           USER_TOKEN: ${{ github.event.client_payload.token }}
-          GITHUB_REPO_TOKEN: ${{ github.token }}
+          GITHUB_REPO_TOKEN: ${{ secrets.GITHUB_REPO_TOKEN }}
           REPOSITORY: ${{ github.repository }}
         run: cd actions && bash ./gradlew run -P JOB=OpenIssue
