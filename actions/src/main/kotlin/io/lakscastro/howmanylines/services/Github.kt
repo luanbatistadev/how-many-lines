@@ -30,6 +30,10 @@ class Github(private val client: HttpClient) {
 
     /// Implemented endpoints
     private const val CURRENT_USER_ENDPOINT = "/user"
+
+    /// Repository Events
+    const val OPEN_ISSUE_DISPATCH = "open-issue"
+    const val BUILD_README_DISPATCH = "build-readme"
   }
 
   /// Make a generic `post` request using the `GITHUB_BASE_URL`
@@ -122,7 +126,25 @@ class Github(private val client: HttpClient) {
     put(
       "/repos/$repository/contents/$README_FILE",
       token,
-      mapOf("message" to message, "content" to Base64.getEncoder().encodeToString(content.toByteArray()).trim(), "sha" to sha)
+      mapOf(
+        "message" to message,
+        "content" to Base64.getEncoder().encodeToString(content.toByteArray()).trim(),
+        "sha" to sha
+      )
+    )
+  }
+
+  /// Get the `README.md` of the repository, create if not exists
+  suspend fun dispatchEvent(
+    repository: String,
+    token: String,
+    event: String,
+    payload: Map<String, *> = emptyMap<String, String>()
+  ) {
+    post(
+      "/repos/$repository/dispatches",
+      token,
+      mapOf("event_type" to event, "client_payload" to payload)
     )
   }
 

@@ -1,7 +1,7 @@
-name: Repository Dispatch
+name: Build README.md
 on:
   repository_dispatch:
-    types: [open-issue]
+    types: [build-readme]
 
 jobs:
   share:
@@ -16,15 +16,9 @@ jobs:
           distribution: "zulu"
           java-version: "8"
 
-      # Setup NodeJS
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-
-      # Create a pool issue based on the auth user
-      - name: Open Issue Job
+      # Build markdown and update the `README.md`
+      - name: Build README.md Job
         env:
-          USER_TOKEN: ${{ github.event.client_payload.token }}
           GITHUB_REPO_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
-        run: cd actions && bash ./gradlew run -P JOB=OpenIssue
+        run: cd actions && bash ./gradlew run -P JOB=GenerateMarkdownTable
