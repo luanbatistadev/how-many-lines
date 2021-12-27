@@ -117,6 +117,8 @@ class MarkdownItemBuilder(private val stats: MarkdownStats) : MarkdownBuilder() 
       }
     }
 
+  private fun format(decomposed: List<Long>): List<String> = decomposed.map { "$it".padStart(3, '0') }.toList()
+
   private fun decompose(number: Long): List<Long> {
     val dividers = listOf(1e15, 1e12, 1e9, 1e6, 1e3, 1e0)
     val result = mutableListOf<Long>()
@@ -137,7 +139,7 @@ class MarkdownItemBuilder(private val stats: MarkdownStats) : MarkdownBuilder() 
 
   private val counter: String
     get() {
-      val parts = decompose(stats.lineCount.toLong())
+      val parts = format(decompose(stats.lineCount.toLong()))
 
       return parts.joinToString(".").split("").joinToString(" ")
     }
