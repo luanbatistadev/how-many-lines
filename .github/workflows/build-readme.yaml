@@ -1,7 +1,6 @@
 name: Build README.md
 on:
-  repository_dispatch:
-    types: [build-readme]
+  workflow_dispatch
 
 jobs:
   build-readme:
