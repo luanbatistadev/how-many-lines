@@ -20,7 +20,7 @@ jobs:
 
   build-readme:
     runs-on: ubuntu-latest
-    needs: [verify-issue]
+    needs: verify-issue
     if: ${{ needs.verify-issue.outputs.skip != 'true' }} 
     steps:
       # Clone and setup local repository
