@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify-issue:
-    runs-on: ubunt-latest
+    runs-on: ubuntu-latest
     outputs:
       skip: ${{ steps.check.outputs.skip }}
     steps:
