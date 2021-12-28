@@ -42,8 +42,6 @@ The link that you can use to [authenticate is this one](https://github.com/login
 
 Software always can be improved, so fill a issue to point where we can do it! Thanks.
 
-<br /><br />
-
 ## Add your GitHub stats
 
 To add your GitHub stats here, just auth your account using the application OAuth screen link:
