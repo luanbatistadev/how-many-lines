@@ -15,6 +15,7 @@ jobs:
       # Ignore normal issue events
       - name: Exit if is not a pool issue
         if: "${{ github.event_name == 'issues' && !contains(github.event.issue.labels.*.name, 't: pool') }}"
+        id: "check"
         run: echo "::set-output name=skip::true"
 
   build-readme:
