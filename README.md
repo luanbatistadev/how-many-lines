@@ -82,7 +82,7 @@ To add your GitHub stats here, just auth your account using the application OAut
 <p align="center">
   <sub>Copyright © 2021-present, Laks Castro.</sub>
 </p>
-<p align="center">Lofi Player <a href="/LICENSE">is MIT licensed 💖</a></p>
+<p align="center">How Many Lines <a href="/LICENSE">is MIT licensed 💖</a></p>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/51419598/147526674-af997b46-81d6-4f8f-a790-2ac76498d548.png" width="35" />
 </p>
