@@ -2,7 +2,7 @@ name: Build README.md
 on:
   workflow_dispatch:
   issues:
-    types: [opened, edited, reopened]
+    types: [opened, deleted, edited, reopened]
   repository_dispatch:
     types: [build-readme]
 
@@ -15,7 +15,7 @@ jobs:
       # Ignore normal issue events
       - name: Exit if is not a pool issue
         id: "check"
-        if: "${{ github.event_name == 'issues' && !contains(github.event.issue.labels.*.name, 't: pool') }}"
+        if: "${{ github.event_name == 'issues' && github.event.action != 'deleted' && !contains(github.event.issue.labels.*.name, 't: pool') }}"
         run: echo "::set-output name=skip::true"
 
   build-readme:
