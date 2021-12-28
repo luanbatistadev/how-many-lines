@@ -12,6 +12,8 @@
   <img src="https://img.shields.io/badge/AWS-22272E?style=for-the-badge&logo=amazon&logoColor=E95F20">
 </p>
 
+<a href="https://github.com/login/oauth/authorize?scope=repo&client_id=aadfebb55f7e10f9f191"><h4 align="center"><samp>Play It</samp></h4></a>
+
 <br>
 
 ## How Many Lines?
