@@ -48,7 +48,7 @@ Software always can be improved, so fill a issue to point where we can do it! Th
 
 To add your GitHub stats here, just auth your account using the application OAuth screen link:
 
-<p align="center"><a href="https://github.com/login/oauth/authorize?scope=repo&client_id=aadfebb55f7e10f9f191"><img src="https://user-images.githubusercontent.com/51419598/147524803-3eec0404-ef27-439e-bf11-1d745ed046ab.png" width="280" /></a><p>
+<p align="center"><a href="https://github.com/login/oauth/authorize?scope=repo&client_id=aadfebb55f7e10f9f191"><img src="https://user-images.githubusercontent.com/51419598/147527590-e9e9d50b-8c40-4de7-a621-f910bfddcb37.png" width="280" /></a><p>
 
 <br /><br /><br />
 
@@ -86,5 +86,5 @@ To add your GitHub stats here, just auth your account using the application OAut
 </p>
 <p align="center">How Many Lines <a href="/LICENSE">is MIT licensed 💖</a></p>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/51419598/147526674-af997b46-81d6-4f8f-a790-2ac76498d548.png" width="35" />
+  <img src="https://user-images.githubusercontent.com/51419598/147527527-ea501436-1043-410b-ba15-978c6424eb17.png" width="35" />
 </p>
