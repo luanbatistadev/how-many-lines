@@ -7,14 +7,21 @@ on:
     types: [build-readme]
 
 jobs:
-  build-readme:
-    runs-on: ubuntu-latest
+  verify-issue:
+    runs-on: ubunt-latest
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
     steps:
       # Ignore normal issue events
       - name: Exit if is not a pool issue
         if: "${{ github.event_name == 'issues' && !contains(github.event.issue.labels.*.name, 't: pool') }}"
-        run: exit 0
+        run: echo "::set-output name=skip::true"
 
+  build-readme:
+    runs-on: ubuntu-latest
+    needs: [verify-issue]
+    if: ${{ needs.verify-issue.outputs.skip != 'true' }} 
+    steps:
       # Clone and setup local repository
       - uses: actions/checkout@v1
 
