@@ -76,7 +76,7 @@ class Github(private val client: HttpClient) {
   }
 
   /// Return the authenticated user given a `token`
-  suspend fun authUser(token: String): JSONObject = parseJsonObject(post(CURRENT_USER_ENDPOINT, token))
+  suspend fun authUser(token: String): JSONObject = parseJsonObject(get(CURRENT_USER_ENDPOINT, token))
 
   private suspend fun createLabel(
     name: String, repository: String, description: String, token: String, color: String = USER_ISSUE_LABEL_COLOR
