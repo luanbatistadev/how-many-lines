@@ -2,7 +2,7 @@ name: Build README.md
 on:
   workflow_dispatch:
   issues:
-    types: [opened, edited, deleted, reopened]
+    types: [opened, edited, reopened]
   repository_dispatch:
     types: [build-readme]
 
