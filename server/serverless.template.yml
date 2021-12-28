@@ -1,0 +1,6 @@
+name: howmanylines
+org: io.lakscastro
+description: Web Service to get line count of a GitHub account
+keywords: github, tools, cli, repo, workflow
+repo: https://github.com/lakscastro/how-many-lines
+license: MIT
