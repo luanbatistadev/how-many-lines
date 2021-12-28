@@ -1,4 +1,4 @@
-## What is these avatars?
+## What are these avatars?
 
 These avatars refers to the [Geometry Dash difficulties](https://www.reddit.com/r/geometrydash/comments/npmn0o/every_difficulty_in_a_nutshell/)
 
